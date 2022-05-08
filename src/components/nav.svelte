@@ -1,6 +1,5 @@
-<nav>
-    <a href="/">Home</a>
-    <a href="/">Models</a>
-    <a href="/">Blog</a>
-    <a href="/about">About</a>
+<nav class="flex justify-center w-full">
+	<a class="mx-4 text-lg" href="/">Home</a>
+	<a class="mx-4 text-lg" href="/">Blog</a>
+	<a class="mx-4 text-lg" href="/about">About</a>
 </nav>
