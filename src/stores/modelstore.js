@@ -9,7 +9,7 @@ export async function fetchModels() {
     const url = 'http://localhost:8080/api/models';
     const res = await fetch(url);
     const data = await res.json();
-    const loadedModels = data.map((data, index) => {
+    const loadedModels = data.map((data) => {
         return {
             id: data.id,
             name: data.name,
