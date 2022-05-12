@@ -18,5 +18,5 @@
 <div class="flex flex-col items-center" in:fade>
 	<h1 class="text-4xl text-center my-8 uppercase">{model.name}</h1>
 	<p>Author: <strong>{model.author}</strong> | Created at: <strong>{model.createdAt}</strong></p>
-	<img class="card-image" src={model.imageUrl} alt={model.name} />
+	<img class="card-image" src="https://robohash.org/{model.name}" alt={model.name} />
 </div>
