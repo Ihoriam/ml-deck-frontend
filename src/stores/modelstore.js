@@ -6,7 +6,7 @@ let loaded = false;
 
 export async function fetchModels() {
     if (loaded) return;
-    const url = 'http://localhost:8080/api/models';
+    const url = 'http://192.168.31.99:8080/api/models';
     const res = await fetch(url);
     const data = await res.json();
     const loadedModels = data.map((data, index) => {
@@ -26,7 +26,7 @@ export async function fetchModels() {
 export async function fetchModelById(id) {
     if (modelDetailsCached[id]) return modelDetailsCached[id];
     try {
-        const url = `http://localhost:8080/api/models/${id}`;
+        const url = `http://192.168.31.99:8080/api/models/${id}`;
         const res = await fetch(url);
         const data = await res.json();
         modelDetailsCached[id] = data;
