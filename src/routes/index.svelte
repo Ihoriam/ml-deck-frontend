@@ -33,7 +33,8 @@
     <title>Welcome to ModelDeck</title>
 </svelte:head>
 
-<h1 class="text-4xl text-center my-8 uppercase">ModelDeck</h1>
+<h1 class="text-4xl text-center my-8 uppercase">Deck</h1>
+<a class="mx-4 text-lg " href="/addmodel">Add new</a>
 <div class="flex justify-center">
     <input
         class="w-2/5 rounded-md text-lg p-2 mx-2 border-2 border-gray-200"

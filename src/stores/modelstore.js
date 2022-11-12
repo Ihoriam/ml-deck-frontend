@@ -1,15 +1,17 @@
 import { writable } from "svelte/store";
 
 export const models = writable([])
+export const model = writable({})
+
 const modelDetailsCached = {};
 let loaded = false;
 
 export async function fetchModels() {
     if (loaded) return;
-    const url = 'http://192.168.31.99:8080/api/models';
+    const url = 'http://localhost:9090/api/models';
     const res = await fetch(url);
     const data = await res.json();
-    const loadedModels = data.map((data, index) => {
+    const loadedModels = data.map((data) => {
         return {
             id: data.id,
             name: data.name,
@@ -26,7 +28,7 @@ export async function fetchModels() {
 export async function fetchModelById(id) {
     if (modelDetailsCached[id]) return modelDetailsCached[id];
     try {
-        const url = `http://192.168.31.99:8080/api/models/${id}`;
+        const url = `http://localhost:9090/api/models/${id}`;
         const res = await fetch(url);
         const data = await res.json();
         modelDetailsCached[id] = data;

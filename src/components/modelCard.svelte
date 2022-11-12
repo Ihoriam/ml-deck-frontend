@@ -2,7 +2,7 @@
     import { fade } from 'svelte/transition';
     export let model;
     const humanReadableCategoryName = {
-        NLP: 'Netural language processing',
+        NLP: 'Natural language processing',
         CLASSIC: 'Classic machine learning',
         CV: 'Computer vision',
     };
