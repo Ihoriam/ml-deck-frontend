@@ -1,5 +1,12 @@
 <script>
-import {model} from "../stores/modelstore.js";
+    import {createModel} from "../stores/modelstore.js";
+
+    let model = {
+        name: null,
+        category: null,
+        description: null,
+        imageUrl: null,
+    };
 </script>
 
 <svelte:head>
@@ -11,13 +18,18 @@ import {model} from "../stores/modelstore.js";
 <div>
     <form class="flex flex-col">
         <label for="name">Name</label>
-        <input type="text" id="name" bind:value={$model.name} class="border-2 rounded-md p-2 my-2">
-        <label for="category">Price</label>
-        <input type="text" id="category" bind:value={$model.category} class="border-2 rounded-md p-2 my-2">
-        <label for="image">Image</label>
-        <input type="text" id="image" bind:value={$model.imageUrl} class="border-2 rounded-md p-2 my-2">
+        <input type="text" id="name" bind:value={model.name} class="border-2 rounded-md p-2 my-2">
+        <label for="category">Category</label>
+        <!--        <input type="text" id="category" bind:value={$model.category} class="border-2 rounded-md p-2 my-2">-->
+        <select id="category" bind:value={model.category} class="border-2 rounded-md p-2 my-2">
+            <option value="NLP">Natural Language Processing</option>
+            <option value="CV">Computer vision</option>
+            <option value="CLASSIC">Classic machine learning</option>
+        </select>
+        <label for="image">Image url</label>
+        <input type="text" id="image" bind:value={model.imageUrl} class="border-2 rounded-md p-2 my-2">
         <label for="description">Description</label>
-        <textarea id="description" bind:value={$model.description} class="border-2 rounded-md p-2 my-2"></textarea>
-        <button type="submit" class="bg-black text-white rounded-md p-2 my-2">Add</button>
+        <textarea id="description" bind:value={model.description} class="border-2 rounded-md p-2 my-2"></textarea>
+        <button type="submit" class="bg-black text-white rounded-md p-2 my-2" on:click={createModel(model)}>Add</button>
     </form>
 </div>

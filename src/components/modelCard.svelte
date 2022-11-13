@@ -6,6 +6,7 @@
         CLASSIC: 'Classic machine learning',
         CV: 'Computer vision',
     };
+    console.log(JSON.stringify(model));
 </script>
 
 <a
@@ -19,7 +20,7 @@
             <img class="border-4 rounded-md bg-gray-200" src="https://robohash.org/{model.name}" alt={model.name} />
         </div>
         <div class="h-40 w-max flex flex-col justify-between content-start">
-            <p class="text-left pl-5">Author: {model.author.firstName + ' ' + model.author.lastName}</p>
+            <p class="text-left pl-5">Author: {model.createdBy ? model.createdBy.username + ' ' + model.createdBy.lastName : "Skynet"}</p>
             <p class="text-left pl-5">Category: {humanReadableCategoryName[model.category]}</p>
             <p class="text-left pl-5">Published at: {model.createdAt}</p>
         </div>

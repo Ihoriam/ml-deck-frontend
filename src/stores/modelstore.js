@@ -1,7 +1,6 @@
-import { writable } from "svelte/store";
+import {writable} from "svelte/store";
 
 export const models = writable([])
-export const model = writable({})
 
 const modelDetailsCached = {};
 let loaded = false;
@@ -15,9 +14,10 @@ export async function fetchModels() {
         return {
             id: data.id,
             name: data.name,
-            author: data.author,
             category: data.category,
+            description: data.description,
             imageUrl: data.imageUrl,
+            createdBy: data.createdBy,
             createdAt: data.createdAt
         }
     })
@@ -35,12 +35,33 @@ export async function fetchModelById(id) {
         return {
             id: data.id,
             name: data.name,
-            author: data.author,
+            category: data.category,
+            description: data.description,
             imageUrl: data.imageUrl,
+            createdBy: data.createdBy,
             createdAt: data.createdAt
         };
     } catch (err) {
         console.error(err);
         return null;
     }
-};
+}
+
+export async function createModel(model) {
+    try {
+        const url = `http://localhost:9090/api/models`;
+        console.log(JSON.stringify(model));
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(model)
+        });
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
