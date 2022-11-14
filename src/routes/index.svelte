@@ -33,7 +33,7 @@
     <title>Welcome to ModelDeck</title>
 </svelte:head>
 
-<div class="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32"><h1
+<div class="max-w-screen-xl px-4 py-10 mx-auto text-center lg:py-28"><h1
         class="text-4xl font-bold text-gray-900 sm:text-6xl">ML Deck</h1>
     <h2 class="mt-4 text-gray-700">Library of all kind of machine leaning models</h2>
     <p class="max-w-lg mx-auto mt-4 text-sm leading-relaxed text-gray-500">
@@ -43,25 +43,24 @@
     </p>
     <a class="mt-4 group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-indigo-500"
        href="/addmodel">
-        <span class=" rounded-md absolute inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0">
-        </span>
-        <span class=" rounded-md relative block border border-current bg-white px-8 py-3">Add your model</span>
+        <span class=" rounded-xl absolute inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
+        <span class=" rounded-xl relative block border border-current bg-white px-8 py-3">Add your model</span>
     </a>
 </div>
 
 <div class="flex justify-center">
     <input
-            class="w-2/5 rounded-md text-lg p-2 mx-2 border-2 border-gray-200"
+            class="w-2/5 rounded-xl text-lg p-2 mx-2 border-2 border-gray-200"
             bind:value={searchTerm}
             placeholder="Search model"
     />
-    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"
             on:click={() => (category = 'classic')}>Classic
     </button>
-    <button class="{category === 'cv' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+    <button class="{category === 'cv' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"
             on:click={() => (category = 'cv')}>CV
     </button>
-    <button class="{category === 'nlp' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+    <button class="{category === 'nlp' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"
             on:click={() => (category = 'nlp')}>NLP
     </button>
     <button on:click={cleanFilters}>
