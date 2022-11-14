@@ -1,7 +1,7 @@
 <script>
-    import { models, fetchModels } from '../stores/modelstore.js';
+    import {fetchModels, models} from '../stores/modelstore.js';
     import ModelCard from '../components/modelCard.svelte';
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
 
     onMount(() => fetchModels());
 
@@ -33,27 +33,49 @@
     <title>Welcome to ModelDeck</title>
 </svelte:head>
 
-<h1 class="text-4xl text-center my-8 uppercase">Deck</h1>
-<a class="mx-4 text-lg " href="/addmodel">Add new</a>
+<div class="max-w-screen-xl px-4 py-16 mx-auto text-center lg:py-32"><h1
+        class="text-4xl font-bold text-gray-900 sm:text-6xl">ML Deck</h1>
+    <h2 class="mt-4 text-gray-700">Library of all kind of machine leaning models</h2>
+    <p class="max-w-lg mx-auto mt-4 text-sm leading-relaxed text-gray-500">
+        <!--        Write intro -->
+        ML Deck is a collection of machine learning models. It is easy to bring them into your own applications.
+        You can also contribute to this project by adding your own models. Share your models with the world!
+    </p>
+    <a class="mt-4 group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-indigo-500"
+       href="/addmodel">
+        <span class=" rounded-md absolute inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0">
+        </span>
+        <span class=" rounded-md relative block border border-current bg-white px-8 py-3">Add your model</span>
+    </a>
+</div>
+
 <div class="flex justify-center">
     <input
-        class="w-2/5 rounded-md text-lg p-2 mx-2 border-2 border-gray-200"
-        bind:value={searchTerm}
-        placeholder="Search model"
+            class="w-2/5 rounded-md text-lg p-2 mx-2 border-2 border-gray-200"
+            bind:value={searchTerm}
+            placeholder="Search model"
     />
-    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2" on:click={() => (category = 'classic')}>Classic</button>
-    <button class="{category === 'cv' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2" on:click={() => (category = 'cv')}>CV</button>
-    <button class="{category === 'nlp' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2" on:click={() => (category = 'nlp')}>NLP</button>
+    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+            on:click={() => (category = 'classic')}>Classic
+    </button>
+    <button class="{category === 'cv' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+            on:click={() => (category = 'cv')}>CV
+    </button>
+    <button class="{category === 'nlp' ? 'bg-slate-100' : ''} border-2 rounded-md w-1/5 mx-2"
+            on:click={() => (category = 'nlp')}>NLP
+    </button>
     <button on:click={cleanFilters}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 24 24" width="24" fill="currentColor"
-            ><path
-                d="M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z"
-            /></svg
+        >
+            <path
+                    d="M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z"
+            />
+        </svg
         >
     </button>
 </div>
 <div class="py-4 grid gap-4 lg:grid-cols-2 grid-cols-1">
     {#each filteredModels as model}
-        <ModelCard {model} />
+        <ModelCard {model}/>
     {/each}
 </div>
