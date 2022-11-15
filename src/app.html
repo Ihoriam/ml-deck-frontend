@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<style>
+	/* For Webkit-based browsers (Chrome, Safari and Opera) */
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* For IE, Edge and Firefox */
+	.scrollbar-hide {
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
+	}
+</style>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -6,7 +18,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
 	</head>
-	<body>
+	<body class="scrollbar-hide">
 		<div>%svelte.body%</div>
 	</body>
 </html>

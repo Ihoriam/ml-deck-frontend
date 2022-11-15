@@ -24,11 +24,11 @@
                 </a>
 
                 <a
-                        class="text-pink-600 hover:text-pink-600/75"
+                        class="text-black-600 hover:text-black-600/75"
                         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                         target="_blank"
                         rel="noreferrer"
-                        aria-label="Dribbble"
+                        aria-label="Meme"
                 >
                     <svg
                             class="h-8 w-8"

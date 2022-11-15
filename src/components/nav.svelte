@@ -1,3 +1,7 @@
+<script>
+    export let isLogged = false;
+</script>
+
 <nav class="pt-6 flex justify-between items-center w-full">
     <div class="flex justify-start  items-center ">
         <div>
@@ -14,12 +18,17 @@
         </div>
     </div>
     <div class="flex justify-end  items-center ">
-        <div>
+        <div class=" {isLogged ? 'hidden' : ''}">
             <a class="mx-4 text-lg " href="/login">
-                Login
+                Sign in
             </a>
         </div>
-        <div class="flex w-10 h-10 border-gray-200 overflow-hidden border border-black rounded-full items-center justify-center">
+        <div class="{isLogged ? 'hidden' : ''}">
+            <a class="mx-4 text-lg " href="/login">
+                Sign up
+            </a>
+        </div>
+        <div class="{isLogged ? '' : 'hidden'} flex w-10 h-10 border-gray-200 overflow-hidden border border-black rounded-full items-center justify-center">
             <a href="/profile">
                 <div>🤡</div>
             </a>

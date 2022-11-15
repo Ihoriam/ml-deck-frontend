@@ -15,8 +15,27 @@
 	<title>ModelDeck - {model.name}</title>
 </svelte:head>
 
-<div class="flex flex-col items-center" in:fade>
+<div class="flex flex-col" in:fade>
 	<h1 class="text-4xl text-center my-8 uppercase">{model.name}</h1>
-	<p>Author: <strong>{model.author}</strong> | Created at: <strong>{model.createdAt}</strong></p>
-	<img class="card-image" src="https://robohash.org/{model.name}" alt={model.name} />
+
+	<div>
+		<div>
+			<img class="card-image" src="https://robohash.org/{model.name}" alt={model.name} />
+		</div>
+		<div>
+			<p>Name: <strong>{model.name}</strong></p>
+			<p>Author: <strong>{model.author}</strong></p>
+			<p>Description: <strong>{model.description}</strong></p>
+			<p>Category: <strong>{model.category}</strong></p>
+			<p>Docker Image: <strong>{model.dockerHubImageUrl}</strong></p>
+			<p>Created at: <strong>{model.createdAt}</strong></p>
+			<p>Updated at: <strong>{model.updatedAt}</strong></p>
+			<p></p>
+		</div>
+	</div>
+	<div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
 </div>

@@ -15,10 +15,12 @@ export async function fetchModels() {
             id: data.id,
             name: data.name,
             category: data.category,
+            dockerHubImageUrl: data.dockerHubImageUrl,
             description: data.description,
-            imageUrl: data.imageUrl,
             createdBy: data.createdBy,
-            createdAt: data.createdAt
+            createdAt: data.createdAt,
+            updatedBy: data.updatedBy,
+            updatedAt: data.updatedAt
         }
     })
     models.set(loadedModels);
@@ -36,10 +38,12 @@ export async function fetchModelById(id) {
             id: data.id,
             name: data.name,
             category: data.category,
+            dockerHubImageUrl: data.dockerHubImageUrl,
             description: data.description,
-            imageUrl: data.imageUrl,
             createdBy: data.createdBy,
-            createdAt: data.createdAt
+            createdAt: data.createdAt,
+            updatedBy: data.updatedBy,
+            updatedAt: data.updatedAt
         };
     } catch (err) {
         console.error(err);
