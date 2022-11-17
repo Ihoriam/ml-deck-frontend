@@ -27,7 +27,7 @@
             <option value="CLASSIC">Classic machine learning</option>
         </select>
         <label for="image">DockerHub image url</label>
-        <input type="text" id="image" bind:value={model.imageUrl} class="border-2 rounded-md p-2 my-2">
+        <input type="text" id="image" bind:value={model.dockerHubImageUrl} class="border-2 rounded-md p-2 my-2">
         <label for="description">Description</label>
         <textarea id="description" bind:value={model.description} class="resize-none h-48 border-2 rounded-md p-2 my-2"></textarea>
         <button type="submit" class="bg-black text-white rounded-md p-2 my-2" on:click={createModel(model)}>Add</button>

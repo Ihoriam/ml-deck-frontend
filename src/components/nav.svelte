@@ -3,28 +3,40 @@
 </script>
 
 <nav class="pt-6 flex justify-between items-center w-full">
-    <div class="flex justify-start  items-center ">
+    <div class="inline-flex gap-1.5 items-center ">
         <div>
-            <a class="mx-4 text-lg" href="/">
+            <a class="text-lg font-bold" href="/">
                 <span>ML Deck</span>
                 <span aria-hidden="true" role="img">🃏</span>
             </a>
         </div>
         <span aria-hidden="true" class="hidden sm:block sm:h-6 sm:w-px sm:bg-gray-100"></span>
-        <div>
-            <a class="content mx-4 text-lg" href="/about">
-                About
-            </a>
+        <div class="inline-flex gap-3.5 items-center text-base">
+            <div>
+                <a class="content" href="/about">
+                    About
+                </a>
+            </div>
+            <div>
+                <a class="content" href="/about">
+                    Blog
+                </a>
+            </div>
+            <div>
+                <a class="content" href="/about">
+                    Docs
+                </a>
+            </div>
         </div>
     </div>
-    <div class="flex justify-end  items-center ">
+    <div class="inline-flex gap-3.5 items-center text-base justify-end">
         <div class=" {isLogged ? 'hidden' : ''}">
-            <a class="mx-4 text-lg " href="/login">
+            <a class="text-lg " href="/login">
                 Sign in
             </a>
         </div>
         <div class="{isLogged ? 'hidden' : ''}">
-            <a class="mx-4 text-lg " href="/login">
+            <a class="text-lg " href="/login">
                 Sign up
             </a>
         </div>
