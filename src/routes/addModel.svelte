@@ -1,5 +1,6 @@
 <script>
     import {createModel} from "../stores/modelstore.js";
+    import {fade} from 'svelte/transition';
 
     let model = {
         name: null,
@@ -13,10 +14,11 @@
     <title>Add new model</title>
 </svelte:head>
 
-<!--page where user can add new model-->
-<h1 class="text-4xl text-center my-8 uppercase">Add model</h1>
+<div class="max-w-screen-xl px-4 pt-10 pb-5 mx-auto text-center lg:pt-28 lg:pb-10">
+    <h1 class="text-4xl font-bold text-gray-900 sm:text-6xl">Add new</h1>
+</div>
 <div>
-    <form class="flex flex-col">
+    <form class="flex flex-col" in:fade>
         <label for="name">Name</label>
         <input type="text" id="name" bind:value={model.name} class="border-2 rounded-md p-2 my-2">
         <label for="category">Category</label>

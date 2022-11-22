@@ -18,16 +18,16 @@
 <svelte:head>
     <title>ModelDeck - {model.name}</title>
 </svelte:head>
-<!--<div class="max-w-screen-xl px-4 py-10 mx-auto text-center lg:py-28">-->
-<!--    <h1 class="text-4xl font-bold text-gray-900 sm:text-6xl">{model.name}</h1>-->
-<!--</div>-->
+<div class="max-w-screen-xl px-4 pt-10 pb-5 mx-auto text-center lg:pt-28 lg:pb-10">
+    <h1 class="text-4xl font-bold text-gray-900 sm:text-6xl">{model.name}</h1>
+</div>
 <div class="flex flex-row" in:fade>
-    <div class="flex flex-col flex-initial justify-between w-1/3">
-        <div class="p-8">
-            <img class="card-image" src="https://robohash.org/{model.name}" alt={model.name}/>
+    <div class="flex flex-col justify-between w-1/3">
+        <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
+            <img class="card-image bg-gray-200 rounded-xl" src="https://robohash.org/{model.name}" alt={model.name}/>
         </div>
-        <div class="p-8">
-            <p class="text-xl font-bold pb-2 underline">General info</p>
+        <div class="p-4 m-4 h-2/3 border-2 border-gray-200 rounded-xl">
+            <p class="text-xl font-bold pb-2 ">General info</p>
             <p>Name: {model.name}</p>
             <p>Author: {model.createdBy ? model.createdBy.username + ' ' + model.createdBy.lastName : "Skynet"}</p>
             <p>Description: {model.description}</p>
@@ -38,29 +38,45 @@
         </div>
     </div>
     <div class="flex flex-col flex-initial w-2/3">
-        <div class="p-8">
-            <p class="text-xl font-bold pb-2 underline">Container info</p>
-            <p>DockerHub image status:
+        <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
+            <p class="text-xl font-bold pb-2 ">Container info</p>
+            <div class="flex pb-1 justify-between flex-row">
+                <p>DockerHub image status:</p>
                 <SuccessBadge text="Loaded"/>
-            </p>
-            <p>Docker container status:
+            </div>
+            <div class="flex pb-1 justify-between flex-row">
+                <p>Docker container status:</p>
                 <WarningBadge text="Stalled"/>
-            </p>
+            </div>
+
         </div>
-        <div class="p-8">
-            <p class="text-xl font-bold pb-2 underline">Example</p>
-            <div class="inline-flex">
+        <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
+            <p class="text-xl font-bold pb-2 ">Example</p>
+            <div class="flex flex-row justify-center gap-5 items-center ">
                 <div>
-                    <img src="" alt="">
+                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
                 </div>
                 <div>
-                    <img src="" alt="">
+                    <img class="w-20 h-20 bg-gray-200 rounded-xl" src="" alt="">
+                </div>
+                <div>
+                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
                 </div>
             </div>
         </div>
-        <div class="p-8">
-            <p class="text-xl font-bold pb-2 underline">Try by your own</p>
-
+        <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
+            <p class="text-xl font-bold pb-2 ">Try by your own</p>
+            <div class="flex flex-row justify-center gap-5 items-center ">
+                <div>
+                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                </div>
+                <div>
+                    <img class="w-20 h-20 bg-gray-200 rounded-xl" src="" alt="">
+                </div>
+                <div>
+                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </div>

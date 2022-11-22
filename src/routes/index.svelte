@@ -42,7 +42,7 @@
         You can also contribute to this project by adding your own models. Share your models with the world!
     </p>
     <a class="mt-4 group relative inline-block text-sm font-medium text-black focus:outline-none focus:ring active:text-indigo-500"
-       href="/addmodel">
+       href="/addModel">
         <span class=" rounded-xl absolute inset-0 translate-x-0.5 translate-y-0.5 bg-black transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
         <span class=" rounded-xl relative block border border-current bg-white px-8 py-3">Add your model</span>
     </a>
@@ -54,9 +54,9 @@
             bind:value={searchTerm}
             placeholder="Search model"
     />
-    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"
-            on:click={() => (category = 'classic')}>Classic
-    </button>
+<!--    <button class="{category === 'classic' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"-->
+<!--            on:click={() => (category = 'classic')}>Classic-->
+<!--    </button>-->
     <button class="{category === 'cv' ? 'bg-slate-100' : ''} border-2 rounded-xl w-1/5 mx-2"
             on:click={() => (category = 'cv')}>CV
     </button>

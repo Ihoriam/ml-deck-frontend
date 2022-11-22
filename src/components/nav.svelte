@@ -18,12 +18,12 @@
                 </a>
             </div>
             <div>
-                <a class="content" href="/about">
-                    Blog
+                <a class="content" href="/resources">
+                    Resources
                 </a>
             </div>
             <div>
-                <a class="content" href="/about">
+                <a class="content" href="/docs">
                     Docs
                 </a>
             </div>
@@ -31,12 +31,12 @@
     </div>
     <div class="inline-flex gap-3.5 items-center text-base justify-end">
         <div class=" {isLogged ? 'hidden' : ''}">
-            <a class="text-lg " href="/login">
+            <a class="text-lg " href="/signIn">
                 Sign in
             </a>
         </div>
         <div class="{isLogged ? 'hidden' : ''}">
-            <a class="text-lg " href="/login">
+            <a class="text-lg " href="/signIn">
                 Sign up
             </a>
         </div>
