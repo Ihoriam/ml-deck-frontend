@@ -1,5 +1,5 @@
 <script>
-    import {fetchModels, models} from '../stores/modelstore.js';
+    import {fetchModels, models} from '../stores/modelStore.js';
     import ModelCard from '../components/modelCard.svelte';
     import {onMount} from 'svelte';
 

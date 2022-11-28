@@ -1,4 +1,5 @@
 import {writable} from "svelte/store";
+import {AppSettings} from "../AppSettings.js";
 
 export const models = writable([])
 
@@ -7,7 +8,7 @@ let loaded = false;
 
 export async function fetchModels() {
     if (loaded) return;
-    const url = 'http://localhost:9090/api/models';
+    const url = AppSettings.API_URL + '/models';
     const res = await fetch(url);
     const data = await res.json();
     const loadedModels = data.map((data) => {
@@ -30,7 +31,7 @@ export async function fetchModels() {
 export async function fetchModelById(id) {
     if (modelDetailsCached[id]) return modelDetailsCached[id];
     try {
-        const url = `http://localhost:9090/api/models/${id}`;
+        const url = AppSettings.API_URL + `/models/${id}`;
         const res = await fetch(url);
         const data = await res.json();
         modelDetailsCached[id] = data;
@@ -53,7 +54,7 @@ export async function fetchModelById(id) {
 
 export async function createModel(model) {
     try {
-        const url = `http://localhost:9090/api/models`;
+        const url = AppSettings.API_URL + `/models`;
         console.log(JSON.stringify(model));
         const res = await fetch(url, {
             method: 'POST',

@@ -1,18 +1,47 @@
 <script context="module">
-    import {fetchModelById} from '../../stores/modelstore';
-    import {fade} from 'svelte/transition';
-    import SuccessBadge from "../../components/badges/successBadge.svelte";
-    import WarningBadge from "../../components/badges/warningBadge.svelte";
+    import {fetchModelById} from '../../stores/modelStore.js';
 
     export async function load({params}) {
         const model = await fetchModelById(params.id);
         return {props: {model}};
     }
-
 </script>
 
 <script>
+    import SuccessBadge from "../../components/badges/successBadge.svelte";
+    import WarningBadge from "../../components/badges/warningBadge.svelte";
+    import DoubleArrowRight from "../../components/icons/doubleArrowRight.svelte";
+    import ThunderIcon from "../../components/icons/thunderIcon.svelte";
+    import MediaImage from "../../components/icons/mediaImage.svelte"
+    import {fetchContainerInfoByModelId} from "../../stores/containerRepo.js";
+    import {fetchDockerHubInfoByName} from "../../stores/dockerHubRepo.js";
+    import {getResponseFromContainerByModelId} from "../../stores/containerRepo.js"
+    import {fade} from 'svelte/transition';
+    import {poll} from "../../polls/poll.js";
+    import {addBase64Prefix} from "../../utils/utils.js";
+
     export let model;
+
+    let containerInfo;
+    let dockerHubInfo;
+
+    let imageToProcess;
+    let processedImage;
+    let fileInput;
+
+    poll(async () => {
+        containerInfo = await fetchContainerInfoByModelId(model.id);
+        dockerHubInfo = await fetchDockerHubInfoByName(model.dockerHubImageUrl);
+    }, 5000);
+
+    const onFileSelected = (e) => {
+        let image = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = e => {
+            imageToProcess = e.target.result;
+        };
+    }
 </script>
 
 <svelte:head>
@@ -24,7 +53,7 @@
 <div class="flex flex-row" in:fade>
     <div class="flex flex-col justify-between w-1/3">
         <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
-            <img class="card-image bg-gray-200 rounded-xl" src="https://robohash.org/{model.name}" alt={model.name}/>
+            <img alt={model.name} class="card-image bg-gray-200 rounded-xl" src="https://robohash.org/{model.name}"/>
         </div>
         <div class="p-4 m-4 h-2/3 border-2 border-gray-200 rounded-xl">
             <p class="text-xl font-bold pb-2 ">General info</p>
@@ -42,39 +71,77 @@
             <p class="text-xl font-bold pb-2 ">Container info</p>
             <div class="flex pb-1 justify-between flex-row">
                 <p>DockerHub image status:</p>
-                <SuccessBadge text="Loaded"/>
+                {#if dockerHubInfo}
+                    {#if dockerHubInfo.dockerHubImageExist}
+                        <SuccessBadge text="Available"/>
+                    {:else}
+                        <WarningBadge text="Unavailable"/>
+                    {/if}
+                {/if}
             </div>
             <div class="flex pb-1 justify-between flex-row">
                 <p>Docker container status:</p>
-                <WarningBadge text="Stalled"/>
+                {#if dockerHubInfo}
+                    {#if containerInfo.dockerContainerActive}
+                        <SuccessBadge text="Running"/>
+                    {:else}
+                        <WarningBadge text="Stalled"/>
+                    {/if}
+                {/if}
+
             </div>
 
         </div>
         <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
             <p class="text-xl font-bold pb-2 ">Example</p>
             <div class="flex flex-row justify-center gap-5 items-center ">
-                <div>
-                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                <div class="w-60 h-60 flex justify-center items-center border rounded-xl">
+                    <MediaImage/>
                 </div>
                 <div>
-                    <img class="w-20 h-20 bg-gray-200 rounded-xl" src="" alt="">
+                    <DoubleArrowRight/>
                 </div>
-                <div>
-                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                <div class="w-60 h-60 flex justify-center items-center border rounded-xl">
+                    <MediaImage/>
                 </div>
             </div>
         </div>
         <div class="p-4 m-4 border-2 border-gray-200 rounded-xl">
             <p class="text-xl font-bold pb-2 ">Try by your own</p>
             <div class="flex flex-row justify-center gap-5 items-center ">
-                <div>
-                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                <div on:click={()=>{fileInput.click();}}>
+                    {#if imageToProcess}
+                        <img class="object-cover w-60 h-60 rounded-xl" src="{imageToProcess}" alt="d"/>
+                    {:else}
+                        <label class="w-60 h-60 flex flex-col items-center justify-center px-4 py-6 rounded-lg tracking-wide uppercase border cursor-pointer">
+                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 20 20">
+                                <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
+                            </svg>
+                            <span class="mt-2 text-base leading-normal">Select a file</span>
+                        </label>
+                    {/if}
+                    <input accept=".jpg, .jpeg, .png" bind:this={fileInput} on:change={(e)=>onFileSelected(e)}
+                           style="display:none" type="file">
+
                 </div>
                 <div>
-                    <img class="w-20 h-20 bg-gray-200 rounded-xl" src="" alt="">
+                    <div>
+                        <button type="button"
+                                on:click={getResponseFromContainerByModelId(model.id, imageToProcess).then((result) => processedImage = result)}>
+                            <ThunderIcon/>
+                        </button>
+                    </div>
+
                 </div>
                 <div>
-                    <img class="w-60 h-60 bg-gray-200 rounded-xl" src="" alt="">
+                    {#if processedImage}
+                        <img class="object-cover w-60 h-60 rounded-xl" src="{addBase64Prefix(processedImage)}" alt="d"/>
+                    {:else}
+                        <div class="w-60 h-60 flex justify-center items-center border rounded-xl">
+                            <MediaImage/>
+                        </div>
+                    {/if}
                 </div>
             </div>
         </div>
