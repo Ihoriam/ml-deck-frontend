@@ -15,7 +15,7 @@
    in:fade>
     <div class="flex h-60 rounded-3xl border-4 border-black bg-white p-6 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#000]">
 <!--        <span class="absolute right-6 top-6 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">4.3</span>-->
-        <div class="flex justify-between p-8 w-96 transition-opacity group-hover:absolute group-hover:opacity-0">
+        <div class="flex justify-between p-8 w-full transition-opacity group-hover:absolute group-hover:opacity-0">
             <img class="w-32 h-32 border-4 rounded-3xl bg-gray-200" src="https://robohash.org/{model.name}"
                  alt={model.name}/>
             <div class="justify-center m-auto">
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="flex justify-between absolute p-8 w-96 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100">
+        <div class="flex justify-between absolute p-8 w-full opacity-0 transition-opacity group-hover:relative group-hover:opacity-100">
             <div>
                 <p class="text-xl pb-2 font-bold sm:text-2xl">{model.name}</p>
                 <p class="text-left">Author: {model.createdBy ? model.createdBy.username + ' ' + model.createdBy.lastName : "Skynet"}</p>

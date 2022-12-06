@@ -29,6 +29,8 @@
     let processedImage;
     let fileInput;
 
+    let processing = false;
+
     poll(async () => {
         containerInfo = await fetchContainerInfoByModelId(model.id);
         dockerHubInfo = await fetchDockerHubInfoByName(model.dockerHubImageUrl);
@@ -127,8 +129,13 @@
                 </div>
                 <div>
                     <div>
-                        <button type="button"
-                                on:click={getResponseFromContainerByModelId(model.id, imageToProcess).then((result) => processedImage = result)}>
+                        <button class="{processing === false ? '' : 'animate-pulse'}" type="button"
+                                on:click={() => {
+                                    processing = true;
+                                    getResponseFromContainerByModelId(model.id, imageToProcess)
+                                        .then((result) => processedImage = result)
+                                        .finally(() => processing = false);
+                                }}>
                             <ThunderIcon/>
                         </button>
                     </div>
@@ -138,7 +145,7 @@
                     {#if processedImage}
                         <img class="object-cover w-60 h-60 rounded-xl" src="{addBase64Prefix(processedImage)}" alt="d"/>
                     {:else}
-                        <div class="w-60 h-60 flex justify-center items-center border rounded-xl">
+                        <div class="animate w-60 h-60 flex justify-center items-center border rounded-xl">
                             <MediaImage/>
                         </div>
                     {/if}
